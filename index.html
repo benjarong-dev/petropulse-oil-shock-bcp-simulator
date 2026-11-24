@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetroPulse — Oil Shock Lag-Time &amp; Bio-BCP Simulator</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="badge-top">OIL SHOCK HACK! THAILAND EARTH DAY 2026 &bull; TRACK A (TEAM THINKTANKER)</p>
+      <h1>PetroPulse: 10-Day Shockwave Lag &amp; Bio-BCP Policy Simulator</h1>
+      <p class="subtitle">
+        Cross-dataset econometric transmission model (EIA Global Crude vs. DOEB/EPPO Domestic Retail)
+        comparing Blanket Mass Subsidy against Targeted SME/Agri Support &amp; Domestic Bio-Fuel Blending.
+      </p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn-outline" href="./Thinktanker_A-.pdf" target="_blank" rel="noopener">Open Pitch Deck (PDF)</a>
+      <button id="exportScenarioBtn" type="button">Export Scenario CSV</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="controls-panel" aria-label="Simulation Parameters">
+      <div class="control-group">
+        <div class="control-head">
+          <label for="crudeSlider">Global Crude Shock Peak (EIA)</label>
+          <strong id="crudeVal">115 USD/bbl</strong>
+        </div>
+        <input id="crudeSlider" type="range" min="85" max="140" step="1" value="115" />
+      </div>
+
+      <div class="control-group">
+        <div class="control-head">
+          <label for="lagSlider">Transmission Lag Window</label>
+          <strong id="lagVal">10 Days</strong>
+        </div>
+        <input id="lagSlider" type="range" min="5" max="15" step="1" value="10" />
+      </div>
+
+      <div class="control-group">
+        <div class="control-head">
+          <label for="bioSlider">Bio-Fuel Surge (E20 + B10 UCO)</label>
+          <strong id="bioVal">18%</strong>
+        </div>
+        <input id="bioSlider" type="range" min="10" max="30" step="1" value="18" />
+      </div>
+
+      <div class="control-group">
+        <div class="control-head">
+          <label for="exciseSlider">Temporary Excise Absorber</label>
+          <strong id="exciseVal">1.50 THB/L</strong>
+        </div>
+        <input id="exciseSlider" type="range" min="0" max="3" step="0.25" value="1.5" />
+      </div>
+    </section>
+
+    <section class="kpi-row">
+      <article class="kpi">
+        <span class="kpi-title">Lead-Time Action Window</span>
+        <strong class="kpi-num" id="kpiLag">10 Days</strong>
+        <span class="kpi-note">EIA upstream peak &rarr; domestic pump impact</span>
+      </article>
+      <article class="kpi">
+        <span class="kpi-title">Peak Retail Diesel (Unmitigated &rarr; BCP)</span>
+        <strong class="kpi-num" id="kpiRetailCompare">-- &rarr; -- THB/L</strong>
+        <span class="kpi-note">Damped via Bio-BCP + Excise buffer</span>
+      </article>
+      <article class="kpi highlight">
+        <span class="kpi-title">Oil Fund Daily Fiscal Savings</span>
+        <strong class="kpi-num" id="kpiSavings">--M THB/d</strong>
+        <span class="kpi-note" id="kpiSavingsSub">vs. blanket universal price cap</span>
+      </article>
+      <article class="kpi">
+        <span class="kpi-title">Crude Import Displacement</span>
+        <strong class="kpi-num" id="kpiImportOffset">-- kbd</strong>
+        <span class="kpi-note">Replaced by domestic cassava/cane &amp; UCO</span>
+      </article>
+    </section>
+
+    <section class="grid-two">
+      <article class="card">
+        <div class="card-head">
+          <h2>30-Day Shockwave Propagation Curve (Global Crude vs. Domestic Diesel)</h2>
+          <div class="legend">
+            <span><i class="swatch blue"></i>EIA Crude Index</span>
+            <span><i class="swatch red"></i>Unmitigated Diesel</span>
+            <span><i class="swatch green"></i>PetroPulse Bio-BCP</span>
+          </div>
+        </div>
+        <canvas id="shockwaveCanvas" width="760" height="300"></canvas>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h2>Daily Oil Fund Drain: Blanket Cap (32 THB/L) vs. Targeted Bio-BCP</h2>
+        </div>
+        <div id="subsidyBars" class="bars-box"></div>
+        <div class="protocol-box">
+          <h3>Staged Lead-Time Protocol</h3>
+          <ul>
+            <li><strong>T-Minus 1&ndash;3 Days:</strong> Activate dynamic Oil Fund buffer &amp; temporary Excise Tax absorber to prevent retail panic hoarding.</li>
+            <li><strong>T-Minus 7&ndash;14 Days:</strong> Release DOEB strategic reserves &amp; scale domestic E20 ethanol + B10 Used Cooking Oil biodiesel blending.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Sectoral Vulnerability &amp; Targeted Subsidy Shield</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Economic Sector</th>
+              <th>Primary Oil-Shock Pain Point</th>
+              <th>Blanket Subsidy Outcome</th>
+              <th>PetroPulse Targeted Bio-BCP Outcome</th>
+            </tr>
+          </thead>
+          <tbody id="sectorBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
